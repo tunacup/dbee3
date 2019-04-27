@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php
+session_start();
+require_once('connect.php');
+
+if (isset($_SESSION["f_name"])){
+	$f_name=$_SESSION["f_name"];
+	
+	
+	}
+
+?>
 <html>
 
 <head>
@@ -39,9 +50,17 @@
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
           </ul> <a class="btn btn-primary" href="contact_us.php">Q&amp;A</a>
-          <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+           <?php	  
+	if (isset($_SESSION["f_name"])&isset($_SESSION["l_name"])){?>
+		<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?php echo ("Hi! ".$f_name." ");?></button>
+
+	<?php }
+		else{?>
+			<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+		<?php }?>
             <div class="dropdown-menu"> <a class="dropdown-item" href="user-profile.php">MY PROFILE</a>
               <div class="dropdown-divider"></div> <a class="dropdown-item" href="user-my_ticket.php" style="">MY TICKET</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="anwer_user.php" style="" >MESSAGE</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="user-changepass.php" style="">CHANGE PASSWORD</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
             </div>
@@ -90,6 +109,10 @@
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
   
 </body>
 

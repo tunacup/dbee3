@@ -1,3 +1,13 @@
+<?php
+session_start();
+require_once('connect.php');
+
+if (isset($_SESSION["f_name"])){
+	$f_name=$_SESSION["f_name"];
+
+
+	}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +19,7 @@
 </head>
 
 <body>
-  <div class="py-3 bg-warning" >
+    <div class="py-3 bg-warning">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -39,9 +49,17 @@
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
           </ul> <a class="btn btn-primary" href="contact_us.php">Q&amp;A</a>
-          <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+         	<?php
+	if (isset($_SESSION["f_name"])&isset($_SESSION["l_name"])){?>
+		<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?php echo ("Hi! ".$f_name." ");?></button>
+
+	<?php }
+		else{?>
+			<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+		<?php }?>
             <div class="dropdown-menu"> <a class="dropdown-item" href="user-profile.php">MY PROFILE</a>
               <div class="dropdown-divider"></div> <a class="dropdown-item" href="user-my_ticket.php" style="">MY TICKET</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="anwer_user.php" style="" >MESSAGE</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="user-changepass.php" style="">CHANGE PASSWORD</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
             </div>
@@ -73,17 +91,36 @@
           <h1>Choose your tickets</h1>
         </div>
       </div>
+<?php
+$q2 = "call avariable(10)";
+$result2 = $mysqli->query($q2);
+
+$q = "select * from ticket_avi";
+$result = $mysqli->query($q);
+$row=$result->fetch_array();
+?>
       <div class="row">
         <div class="col-lg-3 col-md-6 p-3">
           <div class="card bg-light text-center">
             <div class="card-body p-4">
               <h3>A1 STANDING</h3>
               <h2><b>4500 ฿</b></h2>
+				<h5 >Remaining Ticket: <b style="color: #C4080B">
+					<?php if ($row['remainA1']<1)
+						{
+						echo('out of order');
+						}
+					else{	echo ($row['remainA1']);
+			 			}?></b></h5>
               <hr>
+				<?php if ($row['remainA1']>1){?>
 			   <form action="blankA1.php" method="POST">
-              <input type="number" name="quality" class="form-control" placeholder="Quantity">
+              <input type="number" name="quality" min="1" class="form-control" placeholder="Quantity" required>
               <hr><input class="btn btn-primary" type="submit" value="BUY">
 			  </form>
+				<?php }else?>
+				<div></div>
+				<?php?>
             </div>
           </div>
         </div>
@@ -92,11 +129,22 @@
             <div class="card-body p-4">
               <h4 contenteditable="true">A2 STANDING</h4>
               <h2> <b>4500 ฿</b></h2>
+				<h5>Remaining Ticket:  <b style="color: #C4080B">
+					<?php if ($row['remainA2']<1)
+						{
+						echo('out of order');
+						}
+					else{	echo ($row['remainA2']);
+			 			}?></b></h5>
               <hr>
-			  <form action="blankA2.php" method="POST">
-              <input type="number" name="quality" class="form-control" placeholder="Quantity">
+			<?php if ($row['remainA2']>1){?>
+			   <form action="blankA2.php" method="POST">
+              <input type="number" name="quality" min="1" class="form-control" placeholder="Quantity" required>
               <hr><input class="btn btn-primary" type="submit" value="BUY">
 			  </form>
+				<?php }else?>
+				<div></div>
+				<?php?>
             </div>
           </div>
         </div>
@@ -105,10 +153,23 @@
             <div class="card-body p-4" style="">
               <h3>B STANDING</h3>
               <h2> <b>3500 ฿</b></h2>
-			  <form action="blankB.php" method="POST">
-              <hr><input type="number" name="quality" class="form-control" placeholder="Quantity">
+				<h5>Remaining Ticket:  <b style="color: #C4080B">
+
+					<?php if ($row['remainB']<1)
+						{
+						echo('out of order');
+						}
+					else{	echo ($row['remainB']);
+			 			}?></b></h5>
+				<hr>
+			 <?php if ($row['remainB']>1){?>
+			   <form action="blankB.php" method="POST">
+              <input type="number" name="quality" min="1" class="form-control" placeholder="Quantity" required>
               <hr><input class="btn btn-primary" type="submit" value="BUY">
 			  </form>
+				<?php }else?>
+				<div></div>
+				<?php?>
             </div>
           </div>
         </div>
@@ -117,11 +178,22 @@
             <div class="card-body p-4">
               <h3>C STANDING</h3>
               <h2> <b>2500 ฿</b></h2>
+				<h5>Remaining Ticket:  <b style="color: #C4080B">
+					<?php if ($row['remainC']<1)
+						{
+						echo('out of order');
+						}
+					else{	echo ($row['remainC']);
+			 			}?></b></h5>
               <hr>
-			  <form action="blankC.php" method="POST">
-              <input type="number" name="quality" class="form-control" placeholder="Quantity">
+			 <?php if ($row['remainC']>1){?>
+			   <form action="blankC.php" method="POST">
+              <input type="number" name="quality" min="1" class="form-control" placeholder="Quantity" required>
               <hr><input class="btn btn-primary" type="submit" value="BUY">
 			  </form>
+				<?php }else?>
+				<div></div>
+				<?php?>
             </div>
           </div>
         </div>
@@ -159,7 +231,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
+
 </body>
 
 </html>

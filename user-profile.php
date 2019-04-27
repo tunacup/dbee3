@@ -5,6 +5,11 @@ require_once('connect.php');
 	$email=$_SESSION["email"];
 	
 	}
+if (isset($_SESSION["f_name"])){
+	$f_name=$_SESSION["f_name"];
+	
+	
+	}
 
 ?>
 <!DOCTYPE html>
@@ -17,6 +22,7 @@ require_once('connect.php');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="theme.css" type="text/css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body >
@@ -26,7 +32,7 @@ $result=$mysqli->query($q);
 $row=$result->fetch_array();		
 						
 ?>			
-  <div class="py-3 bg-warning" >
+ <div class="py-3 bg-warning">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -56,9 +62,19 @@ $row=$result->fetch_array();
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
           </ul> <a class="btn btn-primary" href="contact_us.php">Q&amp;A</a>
-          <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+
+		<?php	  
+	if (isset($_SESSION["f_name"])&isset($_SESSION["l_name"])){?>
+		<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?php echo ("Hi! ".$f_name." ");?></button>
+
+	<?php }
+		else{?>
+			<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+		<?php }?>
+			  
             <div class="dropdown-menu"> <a class="dropdown-item" href="user-profile.php">MY PROFILE</a>
               <div class="dropdown-divider"></div> <a class="dropdown-item" href="user-my_ticket.php" style="">MY TICKET</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="anwer_user.php" style="" >MESSAGE</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="user-changepass.php" style="">CHANGE PASSWORD</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
             </div>
@@ -67,13 +83,12 @@ $row=$result->fetch_array();
       </div>
     </div>
   </div>
-  </div>
 	
 <form action="user-profile-edit.php" method="post">
     <div class="py-5">
     <div class="container">
       <div class="row">
-		  <div class="col-md-3">
+		  <div class="col-md-3 ">
         <img class="img-fluid d-block rounded-circle" src="si.png"></div>
 		
 		   </div>
@@ -85,15 +100,16 @@ $row=$result->fetch_array();
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="">User Info<br></h1>
+          <h1 class="">User Info<br></h1><hr>
         </div>
       </div>	
       <div class="row">
-        <div class="col-md-12" style="font-size: 20px;">
+        <div class="col-md-12" style="font-size: 17px;">
 			<p>Name: <?php echo($row['f_name'])?>   <?php echo($row['l_name'])?></p>
           <p>Tel: <?php echo($row['tel'])?></p>
 			<p>Email: <?php echo($row['email'])?></p>
 			<p>DOB: <?php echo($row['dateofbirth'])?></p>
+			
 			</div>
       </div>
       <div class="row">

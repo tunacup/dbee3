@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<?php
+<?php require_once('connect.php');
 session_start();
-require_once('connect.php');
-
 if (isset($_SESSION["f_name"])){
 	$f_name=$_SESSION["f_name"];
 	
 	
 	}
-
+$user_id=$_SESSION["udid"];
 ?>
 <html>
 
@@ -19,8 +17,8 @@ if (isset($_SESSION["f_name"])){
   <link rel="stylesheet" href="theme.css" type="text/css">
 </head>
 
-<body class="">
-<div class="py-3 bg-warning">
+<body>
+ <div class="py-3 bg-warning">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -50,7 +48,7 @@ if (isset($_SESSION["f_name"])){
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
           </ul> <a class="btn btn-primary" href="contact_us.php">Q&amp;A</a>
-          <?php	  
+          	<?php	  
 	if (isset($_SESSION["f_name"])&isset($_SESSION["l_name"])){?>
 		<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?php echo ("Hi! ".$f_name." ");?></button>
 
@@ -69,18 +67,65 @@ if (isset($_SESSION["f_name"])){
       </div>
     </div>
   </div>
-  <div class="py-5 text-center" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9 p-3">
-          <img class="img-fluid d-block" src="MAP.jpg">
-          <h1 class="mb-0"><br>Thammasat University Main Stadium</h1>
+  
+ <br>
+ <br>
+ <br>
+
+ <div class="container">
+ <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th><font size="4">Booking date</font></th>
+                <th><font size="4">Time</font</th>
+				<th><font size="4">Zone</font</th>
+                <th><font size="4">Quantity</font</th>
+                <th><font size="4">Total price</font</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+     <?php
+                    $q="SELECT * FROM ticket WHERE user_id ='".$_SESSION['udid']."'order by ticket_id DESC;  ";
+     require_once('connect.php');
+                    $result=$mysqli->query($q);
+                    if(!$result){
+                        echo "Select failed. Error: ".$mysqli->error ;
+                        //break;
+                    }
+                 while($row=$result->fetch_array()){ ?>
+                <tr>
+                    <td>&nbsp <?=$row['date_book']?> &nbsp </td> 
+                    <td>&nbsp <?=$row['time_book']?> &nbsp </td> 
+					<td>&nbsp <?=$row['zone']?> &nbsp </td> 
+                    <td>&nbsp <?=$row['quantity']?> &nbsp </td>
+                    <td>&nbsp <?=$row['total_price']?> &nbsp </td>
+                    <td><?php echo "<td><a href='refun_user.php?tic_id="
+						.$row['ticket_id']."'>Refund</a></td>";?></a></td>
+     <td>
+                      
+                    </td>
+                </tr>
+     <?php } ?>
+            </tbody>
+          </table>
         </div>
-        <div class="col-md-3 align-items-center d-flex justify-content-center p-3"> <a class="btn btn-primary btn-lg" href="https://www.google.com/maps/place/Thammasat+University+Main+Stadium/@14.0709931,100.6005372,15.54z/data=!4m5!3m4!1s0x30e27fe9967e8a67:0xdd189fcfb63464d1!8m2!3d14.0680295!4d100.5989125" target="_blank" > Get Location</a> </div>
       </div>
     </div>
   </div>
-  <div class="py-3">
+  </div>
+  
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+   <div class="py-3">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center d-md-flex align-items-center"> <i class="d-block fa fa-stop-circle fa-2x mr-md-5 text-primary"></i>
@@ -111,7 +156,6 @@ if (isset($_SESSION["f_name"])){
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
 </body>
 
 </html>

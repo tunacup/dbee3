@@ -4,6 +4,11 @@ require_once('connect.php');
 session_start();
 $user_id=$_SESSION["udid"];
 
+if (isset($_SESSION["f_name"])){
+	$f_name=$_SESSION["f_name"];
+	
+	
+	}
 ?>
 <html>
 
@@ -15,7 +20,7 @@ $user_id=$_SESSION["udid"];
 </head>
 
 <body class="">
-  <div class="py-3 bg-warning" >
+ <div class="py-3 bg-warning">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -45,9 +50,17 @@ $user_id=$_SESSION["udid"];
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
           </ul> <a class="btn btn-primary" href="contact_us.php">Q&amp;A</a>
-          <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+          <?php	  
+	if (isset($_SESSION["f_name"])&isset($_SESSION["l_name"])){?>
+		<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?php echo ("Hi! ".$f_name." ");?></button>
+
+	<?php }
+		else{?>
+			<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+		<?php }?>
             <div class="dropdown-menu"> <a class="dropdown-item" href="user-profile.php">MY PROFILE</a>
               <div class="dropdown-divider"></div> <a class="dropdown-item" href="user-my_ticket.php" style="">MY TICKET</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="anwer_user.php" style="" >MESSAGE</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="user-changepass.php" style="">CHANGE PASSWORD</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
             </div>
@@ -55,7 +68,6 @@ $user_id=$_SESSION["udid"];
         </div>
       </div>
     </div>
-  </div>
   </div>
   <div class="py-5 bg-light">
     <div class="container">
@@ -78,7 +90,7 @@ $user_id=$_SESSION["udid"];
 		  <input type="hidden" name="name" value="<?php echo $row['f_name']?>&nbsp;<?php echo $row['l_name']?>">
             <div class="form-group"> <p style="font-size:20px">Email: <label><?php echo $row['email']?></label></p>  </div>
             <div class="form-group"> <p style="font-size:20px">Name: <label><?php echo $row['f_name']?>&nbsp;<?php echo $row['l_name']?></label></p> </div>
-            <div class="form-group"> <label style="font-size:20px">Question</label> <input type="text" name="ques" class="form-control w-100 h-25"> </div> 
+            <div class="form-group"> <label style="font-size:20px">Question</label> <input type="text" name="ques" class="form-control w-100 h-25" required> </div> 
 			<button type="submit" class="btn mt-4 btn-block btn-outline-dark p-2" href="sendq.php"><b>SEND</b></button>
           </form>
         </div>

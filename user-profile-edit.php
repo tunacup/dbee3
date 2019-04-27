@@ -14,7 +14,7 @@
 </head>
 
 <body >
- <div class="py-3 bg-warning" >
+ <div class="py-3 bg-warning">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -47,6 +47,7 @@
           <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
             <div class="dropdown-menu"> <a class="dropdown-item" href="user-profile.php">MY PROFILE</a>
               <div class="dropdown-divider"></div> <a class="dropdown-item" href="user-my_ticket.php" style="">MY TICKET</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="anwer_user.php" style="" >MESSAGE</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="user-changepass.php" style="">CHANGE PASSWORD</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
             </div>
@@ -54,7 +55,6 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
   <form action="edituser.php" method="post">
     <div class="py-5">

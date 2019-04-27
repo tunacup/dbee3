@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php
+session_start();
+require_once('connect.php');
+
+if (isset($_SESSION["f_name"])){
+	$f_name=$_SESSION["f_name"];
+	
+	
+	}
+
+?>
 <html>
 
 <head>
@@ -9,12 +20,12 @@
 </head>
 
 <body>
-  <div class="py-3 bg-warning">
+<div class="py-3 bg-warning" >
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
           <ul class="nav d-flex justify-content-center">
-            <li class="nav-item text-dark" style=""> <a class="nav-link active" href="concert_info.php" contenteditable="true"><b class="">HOME</b></a> </li>
+            <li class="nav-item text-dark" style=""> <a class="nav-link active" href="concert_info.php"><b class="">HOME</b></a> </li>
             <li class="nav-item text-dark"> <a class="nav-link" href="buy_ticket.php"><b>BUY TICKET</b></a> </li>
             <li class="nav-item"> <a class="nav-link" href="line_up.php"><b>LINE UP</b></a> </li>
             <li class="nav-item"> <a class="nav-link" href="location.php"><b>LOCATION</b></a> </li>
@@ -39,9 +50,17 @@
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
           </ul> <a class="btn btn-primary" href="contact_us.php">Q&amp;A</a>
-          <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+          <?php	  
+	if (isset($_SESSION["f_name"])&isset($_SESSION["l_name"])){?>
+		<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?php echo ("Hi! ".$f_name." ");?></button>
+
+	<?php }
+		else{?>
+			<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">USER</button>
+		<?php }?>
             <div class="dropdown-menu"> <a class="dropdown-item" href="user-profile.php">MY PROFILE</a>
               <div class="dropdown-divider"></div> <a class="dropdown-item" href="user-my_ticket.php" style="">MY TICKET</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="anwer_user.php" style="" >MESSAGE</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="user-changepass.php" style="">CHANGE PASSWORD</a>
               <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
             </div>

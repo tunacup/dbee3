@@ -10,14 +10,15 @@
 </head>
 
 <body>
-  <div class="py-3 bg-warning">
+ <div class="py-3 bg-warning" >
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item text-dark"> <a class="nav-link" href="admin-concert_status.php">CONCERT STATUS</a> </li>
             <li class="nav-item text-dark"> <a class="nav-link" href="admin-user_status.php">USER STATUS</a> </li>
-            <li class="nav-item text-dark"> <a class="nav-link" href="admin-user_status.php">Q&amp;A</a> </li>
+            <li class="nav-item text-dark"> <a class="nav-link" href="QandA_admin.php">Q&amp;A</a> </li>
+			<li class="nav-item text-dark"> <a class="nav-link" href="admin-user_refund.php">REFUND</a> </li>
           </ul>
         </div>
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -38,8 +39,9 @@
           </ul>
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
-            <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">ADMIN</button>
-              <div class="dropdown-menu"> <a class="dropdown-item" href="admin-profile.php">ADMIN PROFILE</a>
+            <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">ADMIN</button>
+              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;"> <a class="dropdown-item" href="admin-profile.php">ADMIN PROFILE</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="admin-changepass.php" style="">CHANGE PASSWORD</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
               </div>
             </div>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <?php
 session_start();
@@ -19,8 +20,8 @@ if (isset($_SESSION["f_name"])){
   <link rel="stylesheet" href="theme.css" type="text/css">
 </head>
 
-<body class="">
-<div class="py-3 bg-warning">
+<body>
+    <div class="py-3 bg-warning">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -50,7 +51,7 @@ if (isset($_SESSION["f_name"])){
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
           </ul> <a class="btn btn-primary" href="contact_us.php">Q&amp;A</a>
-          <?php	  
+          	<?php	  
 	if (isset($_SESSION["f_name"])&isset($_SESSION["l_name"])){?>
 		<div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><?php echo ("Hi! ".$f_name." ");?></button>
 
@@ -69,49 +70,45 @@ if (isset($_SESSION["f_name"])){
       </div>
     </div>
   </div>
-  <div class="py-5 text-center" >
+		
+
+	<br>
+	<br>
+	<br>
     <div class="container">
-      <div class="row">
-        <div class="col-md-9 p-3">
-          <img class="img-fluid d-block" src="MAP.jpg">
-          <h1 class="mb-0"><br>Thammasat University Main Stadium</h1>
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th><div class="col-md-1 p-1"> <i class="d-block fa fa-stop-circle text-muted fa-3x">&nbsp;&nbsp;&nbsp;</i><font size="5">Question</font></div></th>
+                <th><div class="col-md-1 p-1"> <i class="d-block fa fa-stop-circle-o text-muted fa-3x">&nbsp;&nbsp;&nbsp;</i><font size="5">Answer</font></div></th>
+              </tr>
+            </thead>
+            <tbody>
+     <?php
+            $q="SELECT * FROM question WHERE user_id ='".$_SESSION['udid']."';  ";
+			
+			if($result=$mysqli->query($q)){
+			} 
+			while($row=$result->fetch_array()){
+				?>
+                <tr>
+                    <td>&nbsp <?=$row['question']?> &nbsp </td> 
+                    <td>&nbsp <?=$row['answer']?> &nbsp </td>
+
+                </tr>
+     <?php } ?>
+            </tbody>
+          </table>
         </div>
-        <div class="col-md-3 align-items-center d-flex justify-content-center p-3"> <a class="btn btn-primary btn-lg" href="https://www.google.com/maps/place/Thammasat+University+Main+Stadium/@14.0709931,100.6005372,15.54z/data=!4m5!3m4!1s0x30e27fe9967e8a67:0xdd189fcfb63464d1!8m2!3d14.0680295!4d100.5989125" target="_blank" > Get Location</a> </div>
-      </div>
     </div>
-  </div>
-  <div class="py-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center d-md-flex align-items-center"> <i class="d-block fa fa-stop-circle fa-2x mr-md-5 text-primary"></i>
-          <ul class="nav mx-md-auto d-flex justify-content-center">
-            <li class="nav-item"> <a class="nav-link active" href="#">&nbsp;</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
-          </ul>
-          <div class="row">
-            <div class="col-md-12 d-flex align-items-center justify-content-md-between justify-content-center my-2"> <a href="#">
-                <i class="d-block fa fa-facebook-official text-muted fa-lg mx-2"></i>
-              </a> <a href="#">
-                <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
-              </a> <a href="#">
-                <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
-              </a> </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p class="mt-2 mb-0">© 1993-2018 DBMusic. All rights reserved</p>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+  
+  
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
 </body>
 
 </html>

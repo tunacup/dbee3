@@ -56,7 +56,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="" >Ticket Info</h1>
+          <h1 class="" >Refund Info</h1>
         </div>
       </div>
       <div class="row">
@@ -71,14 +71,16 @@
             <div class="tab-pane fade show active" id="tabone" role="tabpanel">
 
 			<?php
-			$q="SELECT t.*,u.* FROM ticket t,user u WHERE t.user_id=u.user_id AND t.zone='A1' order by ticket_id DESC";
+			$q="SELECT t.*,u.* FROM refund t,user u WHERE t.user_id=u.user_id AND t.zone='A1' order by refund_id DESC";
 			if($result=$mysqli->query($q)){
 			echo '<table>';
-			echo "<tr><th width='200px'>Ticket_id</th><th width='200px'>User_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
+			echo "<tr><th width='200px'>refund_id</th><th width='200px'>ticket_id</th><th width='200px'>user_id</th><th width='200px'>Payment_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
 				while($row=$result->fetch_array()){
 					 echo "<tr>";
+					echo "<td width='200px'>".$row['refund_id']."</td>";
 					echo "<td width='200px'>".$row['ticket_id']."</td>";
 					echo "<td width='200px'>".$row['user_id']."</td>";
+					echo "<td width='200px'>".$row['payment_id']."</td>";
 					 echo "<td width='200px'>".$row['f_name']." ".$row['l_name']."</td>";
 					 echo "<td width='200px'>".$row['email']."</td>";
 					 echo "<td width='200px'>".$row['date_book']."</td>";
@@ -87,8 +89,7 @@
 					 echo "<td width='200px'>".$row['total_price']."</td>";
 			
 					 
-					echo "<td><a href='delinfo.php?id="
-						.$row['ticket_id']."'>Refund</a></td>";
+				
 				}
 			echo '</table>';
 	
@@ -102,14 +103,16 @@
 			
             <div class="tab-pane fade" id="tabtwo" role="tabpanel">
               <?php
-			$q="SELECT t.*,u.* FROM ticket t,user u WHERE t.user_id=u.user_id AND t.zone='A2' order by ticket_id DESC";
+			$q="SELECT t.*,u.* FROM refund t,user u WHERE t.user_id=u.user_id AND t.zone='A2' order by refund_id DESC";
 			if($result=$mysqli->query($q)){
 			echo '<table>';
-			echo "<tr><th width='200px'>Ticket_id</th><th width='200px'>User_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
+			echo "<tr><th width='200px'>refund_id</th><th width='200px'>ticket_id</th><th width='200px'>user_id</th><th width='200px'>Payment_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
 				while($row=$result->fetch_array()){
 					 echo "<tr>";
+					echo "<td width='200px'>".$row['refund_id']."</td>";
 					echo "<td width='200px'>".$row['ticket_id']."</td>";
 					echo "<td width='200px'>".$row['user_id']."</td>";
+					echo "<td width='200px'>".$row['payment_id']."</td>";
 					 echo "<td width='200px'>".$row['f_name']." ".$row['l_name']."</td>";
 					 echo "<td width='200px'>".$row['email']."</td>";
 					 echo "<td width='200px'>".$row['date_book']."</td>";
@@ -117,8 +120,7 @@
 					 echo "<td width='200px'>".$row['quantity']."</td>";
 					 echo "<td width='200px'>".$row['total_price']."</td>";
 					 
-					echo "<td><a href='delinfo.php?id="
-						.$row['ticket_id']."'>Refund</a></td>";
+				
 				}
 			echo '</table>';
 	
@@ -130,14 +132,16 @@
 			
             <div class="tab-pane fade" id="tabthree" role="tabpanel">
               <?php
-			$q="SELECT t.*,u.* FROM ticket t,user u WHERE t.user_id=u.user_id AND t.zone='B' order by ticket_id DESC";
+			$q="SELECT t.*,u.* FROM refund t,user u WHERE t.user_id=u.user_id AND t.zone='B' order by refund_id DESC";
 			if($result=$mysqli->query($q)){
 			echo '<table>';
-			echo "<tr><th width='200px'>Ticket_id</th><th width='200px'>User_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
+			echo "<tr><th width='200px'>refund_id</th><th width='200px'>ticket_id</th><th width='200px'>user_id</th><th width='200px'>Payment_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
 				while($row=$result->fetch_array()){
 					 echo "<tr>";
+					echo "<td width='200px'>".$row['refund_id']."</td>";
 					echo "<td width='200px'>".$row['ticket_id']."</td>";
 					echo "<td width='200px'>".$row['user_id']."</td>";
+					echo "<td width='200px'>".$row['payment_id']."</td>";
 					 echo "<td width='200px'>".$row['f_name']." ".$row['l_name']."</td>";
 					 echo "<td width='200px'>".$row['email']."</td>";
 					 echo "<td width='200px'>".$row['date_book']."</td>";
@@ -145,8 +149,7 @@
 					 echo "<td width='200px'>".$row['quantity']."</td>";
 					 echo "<td width='200px'>".$row['total_price']."</td>";
 					 
-					echo "<td><a href='delinfo.php?id="
-						.$row['ticket_id']."'>Refund</a></td>";
+					
 				}
 			echo '</table>';
 	
@@ -159,14 +162,16 @@
 			
 			<div class="tab-pane fade" id="tabfour" role="tabpanel">
               <?php
-			$q="SELECT t.*,u.* FROM ticket t,user u WHERE t.user_id=u.user_id AND t.zone='C' order by ticket_id DESC";
+			$q="SELECT t.*,u.* FROM refund t,user u WHERE t.user_id=u.user_id AND t.zone='C' order by refund_id DESC";
 			if($result=$mysqli->query($q)){
 			echo '<table>';
-			echo "<tr><th width='200px'>Ticket_id</th><th width='200px'>User_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
+		echo "<tr><th width='200px'>refund_id</th><th width='200px'>ticket_id</th><th width='200px'>user_id</th><th width='200px'>Payment_id</th><th width='200px'>Name</th><th width='200px'>Email</th><th width='200px'>Booking date</th><th width='200px'>Time</th><th width='200px'>Quantity</th><th width='200px'>Total price</th></tr>";
 				while($row=$result->fetch_array()){
 					 echo "<tr>";
+					echo "<td width='200px'>".$row['refund_id']."</td>";
 					echo "<td width='200px'>".$row['ticket_id']."</td>";
 					echo "<td width='200px'>".$row['user_id']."</td>";
+					echo "<td width='200px'>".$row['payment_id']."</td>";
 					 echo "<td width='200px'>".$row['f_name']." ".$row['l_name']."</td>";
 					 echo "<td width='200px'>".$row['email']."</td>";
 					 echo "<td width='200px'>".$row['date_book']."</td>";
@@ -174,8 +179,7 @@
 					 echo "<td width='200px'>".$row['quantity']."</td>";
 					 echo "<td width='200px'>".$row['total_price']."</td>";
 					 
-					echo "<td><a href='delinfo.php?id="
-						.$row['ticket_id']."'>Refund</a></td>";
+				
 				}
 			echo '</table>';
 	

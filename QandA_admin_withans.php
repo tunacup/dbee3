@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div class="py-3 bg-warning">
+ <div class="py-3 bg-warning" >
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center d-md-flex justify-content-between align-items-center">
@@ -38,8 +38,9 @@
           </ul>
           <ul class="nav d-flex justify-content-center">
             <li class="nav-item"> <a class="nav-link" href="#">&nbsp;</a> </li>
-            <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">ADMIN</button>
-              <div class="dropdown-menu"> <a class="dropdown-item" href="admin-profile.php">ADMIN PROFILE</a>
+            <div class="btn-group"> <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">ADMIN</button>
+              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;"> <a class="dropdown-item" href="admin-profile.php">ADMIN PROFILE</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="admin-changepass.php" style="">CHANGE PASSWORD</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="home_page.php" style="">LOG OUT</a>
               </div>
             </div>
@@ -74,11 +75,9 @@ $row=$result->fetch_array();
               <div class="form-group col-md-6"> <p style="font-size:20px;">Email: <?php echo $row['email']?></p> </div>
             </div>
             <div class="form-group" style="text-align:left;"> <p style="font-size:20px;">Q: <?php echo $row['question']?></p></div>
-            <div class="form-group" style="text-align:left;"> <A: style="font-size:20px;">Q: <?php echo $row['answer']?></p> </div> 
+            <div class="form-group" style="text-align:left;"> <A: style="font-size:20px;">A: <?php echo $row['answer']?></p> </div> 
 			
-			<button type="submit" class="btn btn-primary">Send</button>
-          </form>
-		  
+		
 		  <br><a class="btn btn-secondary" href="QandA_admin.php">Back</a>
         </div>
       </div>

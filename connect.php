@@ -1,6 +1,11 @@
 <?php
-$mysqli = new mysqli('localhost','root','','dbee');
-   if($mysqli->connect_errno){
-      echo $mysqli->connect_errno.": ".$mysqli->connect_error;
-   }
- ?>
+	 require _DIR_ . "/vendor/autoload.php";
+
+	 use Google\Cloud\BigQuery\BigQueryClient;
+ 
+	 $projectId = "hopeful-lexicon-236016";
+ 
+	 $bigQuery = new BigQueryClient([
+		 "projectId" => $projectId,
+	 ]);
+?>

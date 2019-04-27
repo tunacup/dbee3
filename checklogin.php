@@ -14,7 +14,7 @@ $result1=$mysqli->query($q1);
 $row1=$result1->fetch_array();
 $udid=$row1['user_id'];
 $_SESSION["udid"]=$udid;
-
+$_SESSION["f_name"]=$row1['f_name'];
 
 
  $q= "select * from user where email='$uemail' and pass='$upassw'";

@@ -15,7 +15,7 @@ $DOB=$_POST['DOB'];
 
 require_once('connect.php');
 
- $q= "UPDATE user SET Fname='$fname',Lname='$lname',tel='$tel',DOB='$DOB' where email='$email';";
+ $q= "UPDATE user SET f_name='$fname',l_name='$lname',tel='$tel',dateofbirth='$DOB' where email='$email';";
 
 $result = $mysqli->query($q);
 
