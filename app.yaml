@@ -1,11 +1,7 @@
 runtime: php55
 api_version: 1
 
-handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
-
+handlers: 
 - url: /stylesheets
   static_dir: stylesheets
 
@@ -13,14 +9,14 @@ handlers:
   static_files: \1
   upload: (.+\.(ico|jpg|png|gif))$
   application_readable: true
-
+ 
 - url: /(.+\.(htm|html|css|js))$
   static_files: \1
   upload: (.+\.(htm|html|css|js))$
   application_readable: true
-
+ 
 - url: /(.+\.php)$
   script: \1
 
 - url: /.*
-  script: home_page.php
+  script: index.php
